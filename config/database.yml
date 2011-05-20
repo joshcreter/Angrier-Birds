@@ -8,3 +8,12 @@ test: &test
 
 cucumber:
   <<: *test
+  
+production: 
+  encoding: unicode
+  adapter: postgresql
+  username: yyinvjiyhl
+  port: 5432
+  host: ec2-174-129-3-52.compute-1.amazonaws.com
+  database: yyinvjiyhl
+  password: cGhE6y-pog1Cg81qcgKg
