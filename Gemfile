@@ -2,7 +2,6 @@ source :rubygems
 
 gem "rails", ">= 3.0.3"
 gem "rack"
-#gem "clearance", "~> 0.10.1"
 gem "haml"
 gem "high_voltage"
 gem "hoptoad_notifier"
@@ -13,9 +12,13 @@ gem "validation_reflection"
 gem "formtastic"
 gem "flutie"
 gem "dynamic_form"
-gem "sqlite3"
 gem "omniauth"
 gem "sass"
+
+
+group :development do
+  gem "sqlite3"
+end
 
 # RSpec needs to be in :development group to expose generators
 # and rake tasks without having to type RAILS_ENV=test.
@@ -23,6 +26,10 @@ group :development, :test do
   gem "rspec-rails", "~> 2.4.0"
   gem "ruby-debug",   :platforms => :mri_18
   gem "ruby-debug19", :platforms => :mri_19
+end
+
+group :producion do
+  gem "pg"
 end
 
 group :test do
