@@ -1,0 +1,10 @@
+development: &default
+  adapter: sqlite3
+  database: db/abirds_development.db
+
+test: &test
+  <<: *default
+  database: db/abirds_test.db
+
+cucumber:
+  <<: *test
