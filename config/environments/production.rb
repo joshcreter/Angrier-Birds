@@ -49,3 +49,23 @@ Abirds::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'abirds.com' }
 end
+
+Rails.application.config.middleware.use OmniAuth::Builder do
+   # you need a store for OpenID; (if you deploy on heroku you need Filesystem.new('./tmp') instead of Filesystem.new('/tmp'))
+   require 'openid/store/filesystem'
+   
+   # load certificates
+   require "openid/fetchers"
+   OpenID.fetcher.ca_file = "#{Rails.root}/config/ca-bundle.crt"
+    
+   # providers with id/secret, you need to sign up for their services (see below) and enter the parameters here
+   provider :facebook, 'APP_ID', 'APP_SECRET'
+   provider :twitter, 'CONSUMER_KEY', 'CONSUMER_SECRET'
+   provider :github, 'CLIENT ID', 'SECRET'
+   
+   # dedicated openid
+   provider :openid, OpenID::Store::Filesystem.new('./tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'   
+   provider :openid, OpenID::Store::Filesystem.new('./tmp'), :name => 'yahoo', :identifier => 'yahoo.com' 
+   provider :openid, OpenID::Store::Filesystem.new('./tmp'), :name => 'aol', :identifier => 'openid.aol.com'
+   provider :openid, OpenID::Store::Filesystem.new('./tmp'), :name => 'myopenid', :identifier => 'myopenid.com'   
+end
