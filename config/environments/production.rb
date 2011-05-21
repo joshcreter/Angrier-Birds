@@ -25,8 +25,8 @@ Abirds::Application.configure do
   # config.logger = SyslogLogger.new
 
   # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
-
+  config.cache_store = :dalli_store
+  
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
@@ -51,8 +51,7 @@ Abirds::Application.configure do
 end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-   # you need a store for OpenID; (if you deploy on heroku you need Filesystem.new('./tmp') instead of Filesystem.new('/tmp'))
-   require 'openid/store/filesystem'
+   require 'openid/store/memcache'
    
    # load certificates
    require "openid/fetchers"

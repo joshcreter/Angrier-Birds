@@ -14,7 +14,7 @@ gem "flutie"
 gem "dynamic_form"
 gem "omniauth"
 gem "sass"
-
+gem "dalli"
 
 group :development do
   gem "sqlite3"
