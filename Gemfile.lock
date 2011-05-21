@@ -153,6 +153,7 @@ GEM
       oa-more (= 0.2.5)
       oa-oauth (= 0.2.5)
       oa-openid (= 0.2.5)
+    openid_dalli_store (1.0.1)
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
@@ -263,6 +264,7 @@ DEPENDENCIES
   launchy
   nokogiri
   omniauth
+  openid_dalli_store
   paperclip
   pg
   rack

@@ -15,7 +15,8 @@ gem "dynamic_form"
 gem "omniauth"
 gem "sass"
 gem "dalli"
-
+gem "openid_dalli_store"
+  
 group :development do
   gem "sqlite3"
 end
