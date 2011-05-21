@@ -17,6 +17,9 @@ gem "sass"
 gem "dalli"
 gem "openid_dalli_store"
 gem "juggernaut"
+gem "SystemTimer"
+gem "json"
+gem "eventmachine"
 
 group :development do
   gem "sqlite3"
