@@ -63,8 +63,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
    provider :github, 'CLIENT ID', 'SECRET'
    
    # dedicated openid
-   provider :openid, OpenID::Store::Filesystem.new('./tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'   
-   provider :openid, OpenID::Store::Filesystem.new('./tmp'), :name => 'yahoo', :identifier => 'yahoo.com' 
-   provider :openid, OpenID::Store::Filesystem.new('./tmp'), :name => 'aol', :identifier => 'openid.aol.com'
-   provider :openid, OpenID::Store::Filesystem.new('./tmp'), :name => 'myopenid', :identifier => 'myopenid.com'   
+   provider :openid, OpenID::Store::Memcache.new(Dalli::Client.new), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'   
+   provider :openid, OpenID::Store::Memcache.new(Dalli::Client.new), :name => 'yahoo', :identifier => 'yahoo.com' 
+   provider :openid, OpenID::Store::Memcache.new(Dalli::Client.new), :name => 'aol', :identifier => 'openid.aol.com'
 end
