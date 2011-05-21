@@ -16,7 +16,8 @@ gem "omniauth"
 gem "sass"
 gem "dalli"
 gem "openid_dalli_store"
-  
+gem "juggernaut"
+
 group :development do
   gem "sqlite3"
 end
