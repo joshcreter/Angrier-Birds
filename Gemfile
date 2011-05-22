@@ -30,6 +30,7 @@ gem "dalli"
 gem "openid_dalli_store"
 gem "eventmachine"
 
+gem "rake", "0.8.7"
 gem "sprockets"
 
 group :development do
