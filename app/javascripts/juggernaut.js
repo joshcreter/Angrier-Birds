@@ -5,8 +5,7 @@ jQuery(function($){
   
   var JuggernautApp = Spine.Class.create({
     init: function(){
-    	console.log('ok');
-      this.socket = new Juggernaut({host: 'ishootstuff.net', port:4747});
+      this.socket = new Juggernaut({host: 'juggernaut.angrier-birds.com', port:4747});
       this.offline = $("<div></div>")
     		.html("The connection has been disconnected! <br /> " + 
     		      "Please go back online to use this service.")
