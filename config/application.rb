@@ -8,9 +8,6 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Abirds
   class Application < Rails::Application
-    config.generators do |generate|
-      generate.test_framework :rspec
-    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -24,6 +21,7 @@ module Abirds
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+    config.active_record.observers = :juggernaut_observer
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -34,12 +32,21 @@ module Abirds
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:defaults] = %w()
+    # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :password_confirmation]
+    
+ #   require "rack/sprockets"
+ #   config.middleware.use "Rack::Sprockets", :load_path => ["app/javascripts/", "app/javascripts/lib/"]
+    
+    require "rack/less"
+    config.middleware.use "Rack::Less"
+        
+    config.active_record.include_root_in_json = false
+    SuperModel::Base.include_root_in_json     = false    
   end
 end

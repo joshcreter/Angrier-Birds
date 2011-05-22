@@ -4,7 +4,7 @@ require "socket"
 module Juggernaut
   CONFIG = YAML::load(ERB.new(IO.read("#{RAILS_ROOT}/config/juggernaut_hosts.yml")).result).freeze
   CR = "\0"
-  
+
   class << self
     
     def send_to_all(data)
@@ -18,6 +18,9 @@ module Juggernaut
     end
     
     def send_to_channels(data, channels)
+    Rails.logger.debug "sdfas"
+
+
       fc = {
         :command   => :broadcast,
         :body      => data, 

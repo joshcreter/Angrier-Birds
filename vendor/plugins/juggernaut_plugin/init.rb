@@ -1,3 +1,4 @@
+=begin
 require File.dirname(__FILE__) + '/lib/juggernaut'
 require File.dirname(__FILE__) + '/lib/juggernaut_helper'
 
@@ -16,3 +17,5 @@ ActionView::Base.class_eval do
   include Juggernaut::RenderExtension
   alias_method :render, :render_with_juggernaut
 end
+
+=end

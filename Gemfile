@@ -1,7 +1,18 @@
 source :rubygems
 
-gem "rails", ">= 3.0.3"
-gem "rack"
+gem "rails", "3.0.5"
+
+gem "less", :git => "git://github.com/maccman/less.git"
+gem "rack-less"
+#gem "rack-sprockets"
+gem "yui-compressor"
+gem "supermodel"
+gem "juggernaut"
+gem "thin"
+gem "omniauth"
+gem "carrierwave"
+
+=begin
 gem "haml"
 gem "high_voltage"
 gem "hoptoad_notifier"
@@ -12,14 +23,14 @@ gem "validation_reflection"
 gem "formtastic"
 gem "flutie"
 gem "dynamic_form"
-gem "omniauth"
 gem "sass"
+=end
+
 gem "dalli"
 gem "openid_dalli_store"
-gem "juggernaut"
-gem "SystemTimer"
-gem "json"
 gem "eventmachine"
+
+gem "sprockets"
 
 group :development do
   gem "sqlite3"
@@ -34,7 +45,7 @@ group :development, :test do
 end
 
 group :producion do
-  gem "pg"
+ # gem "pg"
 end
 
 group :test do

@@ -29,9 +29,9 @@ class ServicesController < ApplicationController
       redirect_to root_url
     else  # create account
       @newuser = User.new
-      @newuser.name = session[:authhash][:name]
+#      @newuser.fullname = session[:authhash][:fullname]
       @newuser.email = session[:authhash][:email]
-      @newuser.services.build(:provider => session[:authhash][:provider], :uid => session[:authhash][:uid], :uname => session[:authhash][:name], :uemail => session[:authhash][:email])
+      @newuser.services.build(:provider => session[:authhash][:provider], :uid => session[:authhash][:uid], :uname => session[:authhash][:fullname], :uemail => session[:authhash][:email])
       
       if @newuser.save!
         # signin existing user
@@ -80,17 +80,17 @@ class ServicesController < ApplicationController
       
       if service_route == 'facebook'
         omniauth['extra']['user_hash']['email'] ? @authhash[:email] =  omniauth['extra']['user_hash']['email'] : @authhash[:email] = ''
-        omniauth['extra']['user_hash']['name'] ? @authhash[:name] =  omniauth['extra']['user_hash']['name'] : @authhash[:name] = ''
+        omniauth['extra']['user_hash']['name'] ? @authhash[:fullname] =  omniauth['extra']['user_hash']['name'] : @authhash[:fullname] = ''
         omniauth['extra']['user_hash']['id'] ?  @authhash[:uid] =  omniauth['extra']['user_hash']['id'].to_s : @authhash[:uid] = ''
         omniauth['provider'] ? @authhash[:provider] = omniauth['provider'] : @authhash[:provider] = ''
       elsif service_route == 'github'
         omniauth['user_info']['email'] ? @authhash[:email] =  omniauth['user_info']['email'] : @authhash[:email] = ''
-        omniauth['user_info']['name'] ? @authhash[:name] =  omniauth['user_info']['name'] : @authhash[:name] = ''
+        omniauth['user_info']['name'] ? @authhash[:fullname] =  omniauth['user_info']['name'] : @authhash[:fullname] = ''
         omniauth['extra']['user_hash']['id'] ? @authhash[:uid] =  omniauth['extra']['user_hash']['id'].to_s : @authhash[:uid] = ''
         omniauth['provider'] ? @authhash[:provider] =  omniauth['provider'] : @authhash[:provider] = ''  
       elsif ['google', 'yahoo', 'twitter', 'myopenid', 'open_id'].index(service_route) != nil
         omniauth['user_info']['email'] ? @authhash[:email] =  omniauth['user_info']['email'] : @authhash[:email] = ''
-        omniauth['user_info']['name'] ? @authhash[:name] =  omniauth['user_info']['name'] : @authhash[:name] = ''
+        omniauth['user_info']['name'] ? @authhash[:fullname] =  omniauth['user_info']['name'] : @authhash[:fullname] = ''
         omniauth['uid'] ? @authhash[:uid] = omniauth['uid'].to_s : @authhash[:uid] = ''
         omniauth['provider'] ? @authhash[:provider] = omniauth['provider'] : @authhash[:provider] = ''
       else        
@@ -109,7 +109,7 @@ class ServicesController < ApplicationController
             flash[:notice] = 'Your account at ' + @authhash[:provider].capitalize + ' is already connected with this site.'
             redirect_to services_path
           else
-            current_user.services.create!(:provider => @authhash[:provider], :uid => @authhash[:uid], :uname => @authhash[:name], :uemail => @authhash[:email])
+            current_user.services.create!(:provider => @authhash[:provider], :uid => @authhash[:uid], :uname => @authhash[:fullname], :uemail => @authhash[:email])
             flash[:notice] = 'Your ' + @authhash[:provider].capitalize + ' account has been added for signing in at this site.'
             redirect_to services_path
           end

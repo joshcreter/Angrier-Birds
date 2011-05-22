@@ -1,8 +1,9 @@
-Abirds::Application.routes.draw do
+Abirds::Application.routes.draw do |map|
+  root :to => "app#index"
 
-  # Omniauth pure
   match "/signin" => "services#signin"
   match "/signout" => "services#signout"
+  match "/logout" => "services#signout"
 
   match '/auth/:service/callback' => 'services#create' 
   match '/auth/failure' => 'services#failure'
@@ -17,12 +18,29 @@ Abirds::Application.routes.draw do
     end
   end
 
+  match "/auth/twitter/callback" => "authorize#create"
+  match "/auth/failure" => "authorize#failure"
+  match "/logout" => "authorize#destroy", :as => :logout
+  match "/authorize" => redirect("/auth/google")
+ 
+  resources :messages
+  resources :channels
+  resources :assets  
+  resources :app
+  
+  match "/assets/*:id" => "assets#show"
+     
+  resources :room do
+    collection do
+      get 'send_data'
+    end
+  end
+
   # used for the demo application only
   resources :users, :only => [:index] do
     collection do
-      get 'test'
+      get 'test2'
     end
   end
    
-  root :to => "users#index"
 end

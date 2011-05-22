@@ -3,11 +3,10 @@
 <head>
   <title>Abirds</title>
   <%= stylesheet_link_tag :all, :cache => false %>
-  <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+    <%= javascript_include_tag('/sprockets.js') %>
 </head>
 <body>
-
 <section id="head">
 
 	<section id="user">
@@ -26,7 +25,6 @@
 					<li><%= link_to "Facebook", "/auth/facebook" %></li>
 					<li><%= link_to "Google", "/auth/google" %></li>
 					<li><%= link_to "Yahoo", "/auth/yahoo" %>
-					<li><%= link_to "MyOpenID", "/auth/myopenid" %>
 					<li><%= link_to "Other", signin_services_path %>
 				</ul>
 			</nav>
