@@ -4,7 +4,6 @@ gem "rails", "3.0.5"
 
 gem "less", :git => "git://github.com/maccman/less.git"
 gem "rack-less"
-#gem "rack-sprockets"
 gem "yui-compressor"
 gem "supermodel"
 gem "juggernaut", :git => "git://github.com/joshcreter/juggernaut.git"
@@ -32,6 +31,7 @@ gem "eventmachine"
 
 gem "rake", "0.8.7"
 gem "sprockets"
+gem "jsmin"
 
 group :development do
   gem "sqlite3"
