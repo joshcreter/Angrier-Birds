@@ -46,6 +46,7 @@ Abirds::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  ENV["REDISTOGO_URL_CUSTOM"] = 'redis://juggernaut.angrier-birds.com:6379'
-
+  ENV["REDISTOGO_URL"] = 'redis://juggernaut.angrier-birds.com:6379' 
+  ENV["REDISTOGO_URL_CUSTOM"] = 'redis://juggernaut.angrier-birds.com:6379' 
+  
 end
