@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   private
   def current_user_handle
-    Rails.logger.debug "current_user_handle #{current_user.id}"
+#    Rails.logger.debug "current_user_handle #{current_user.id}"
     return current_user.id
   end
 
@@ -29,10 +29,10 @@ class ApplicationController < ActionController::Base
   def current_user
 
     if session[:user_id]
-      Rails.logger.debug "user id sesion = #{session[:user_id]}"
+ #     Rails.logger.debug "user id sesion = #{session[:user_id]}"
       @current_user ||= User.find_by_id(session[:user_id])
     elsif cookies.signed[:user_id]
-      Rails.logger.debug "user id cookie = #{cookies.signed[:user_id]}"
+ #     Rails.logger.debug "user id cookie = #{cookies.signed[:user_id]}"
       @current_user ||= User.find_by_id(cookies.signed[:user_id])
     end
 

@@ -5,7 +5,7 @@ Abirds::Application.routes.draw do |map|
   match "/signout" => "services#signout"
   match "/logout" => "services#signout"
 
-  match '/auth/:service/callback' => 'services#create' 
+  match '/auth/:service/callback' => 'services#create'
   match '/auth/failure' => 'services#failure'
 
   resources :services, :only => [:index, :create, :destroy] do
@@ -22,25 +22,33 @@ Abirds::Application.routes.draw do |map|
   match "/auth/failure" => "authorize#failure"
   match "/logout" => "authorize#destroy", :as => :logout
   match "/authorize" => redirect("/auth/google")
- 
+
   resources :messages
   resources :channels
-  resources :assets  
+  resources :assets
   resources :app
-  
+
   match "/assets/*:id" => "assets#show"
-     
+
   resources :room do
     collection do
       get 'send_data'
     end
   end
 
+  resources :brains do
+    collection do
+      get 'start'
+      get 'onetime'
+      get 'loopy'
+      get 'message'
+    end
+  end
   # used for the demo application only
   resources :users, :only => [:index] do
     collection do
       get 'test2'
     end
   end
-   
+
 end

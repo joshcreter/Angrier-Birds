@@ -30,7 +30,9 @@ gem "dalli"
 gem "openid_dalli_store"
 gem "eventmachine"
 gem "redis"
-
+gem "delayed_job"
+#gem "statemachine"
+ 
 gem "rake", "0.8.7"
 gem "sprockets"
 gem "jsmin"
