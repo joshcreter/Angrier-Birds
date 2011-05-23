@@ -40,7 +40,7 @@ class BrainJob < Struct.new(:channel_id, :brain_id)
     while keep_alive?
       message_body = "#{Time.now.to_i} - Loop: #{count} - [insert wit here]"
 
-      message = Message.new(:body => message_body, :name => brain_id, :channel_id => "F900A25F-5C39-42FF-8CBD-AA7E80F8F94E")
+      message = Message.new(:body => message_body, :name => brain_id, :channel_id => "261419F9-67DC-4CA6-A408-A648E09211F0")
       message.save!
 
       sleep(5)
