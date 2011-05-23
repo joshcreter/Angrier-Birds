@@ -2,6 +2,7 @@ require "yaml"
 require "socket"
 
 module Juggernaut
+# YAML.load(IO.read(Rails.root.join('config', 'sprockets.yml'))) || {}
   CONFIG = YAML::load(ERB.new(IO.read("#{RAILS_ROOT}/config/juggernaut_hosts.yml")).result).freeze
   CR = "\0"
 
@@ -18,9 +19,6 @@ module Juggernaut
     end
     
     def send_to_channels(data, channels)
-    Rails.logger.debug "sdfas"
-
-
       fc = {
         :command   => :broadcast,
         :body      => data, 
@@ -104,6 +102,7 @@ module Juggernaut
     alias show_clients_for_channel show_clients_for_channels
 
     def send_data(hash, response = false)
+      
       hash[:channels]   = Array(hash[:channels])   if hash[:channels]
       hash[:client_ids] = Array(hash[:client_ids]) if hash[:client_ids]
       
@@ -111,12 +110,13 @@ module Juggernaut
       hosts.each do |address|
         begin
           hash[:secret_key] = address[:secret_key] if address[:secret_key]
-          
+
           @socket = TCPSocket.new(address[:host], address[:port])
           # the \0 is to mirror flash
           @socket.print(hash.to_json + CR)
           @socket.flush
           res << @socket.readline(CR) if response
+
         ensure
           @socket.close if @socket and !@socket.closed?
         end

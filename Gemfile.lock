@@ -180,6 +180,7 @@ DEPENDENCIES
   rack-less
   rails (= 3.0.5)
   rake (= 0.8.7)
+  redis
   sprockets
   sqlite3
   supermodel

@@ -25,6 +25,8 @@ Abirds::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'abirds.local' }
 
-  ENV["REDISTOGO_URL"] = 'redis://username:foobared@local.angrier-birds.com:6379' 
+#  ENV["REDISTOGO_URL"] = 'redis://username:foobared@local.angrier-birds.com:6379' 
+  ENV["REDISTOGO_URL"] = 'redis://juggernaut.angrier-birds.com:6379' 
+  ENV["REDISTOGO_URL_CUSTOM"] = 'redis://juggernaut.angrier-birds.com:6379' 
 
 end

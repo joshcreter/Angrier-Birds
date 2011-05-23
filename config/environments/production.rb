@@ -1,8 +1,8 @@
 Abirds::Application.configure do
-  # Settings specified here will take precedence over those in config/application.rb
+# Settings specified here will take precedence over those in config/application.rb
 
-  # The production environment is meant for finished, "live" apps.
-  # Code is not reloaded between requests
+# The production environment is meant for finished, "live" apps.
+# Code is not reloaded between requests
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
@@ -25,7 +25,7 @@ Abirds::Application.configure do
   # config.logger = SyslogLogger.new
 
   config.cache_store = :dalli_store
-  
+
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
@@ -46,5 +46,6 @@ Abirds::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'abirds.com' }
+  ENV["REDISTOGO_URL_CUSTOM"] = 'redis://juggernaut.angrier-birds.com:6379'
+
 end
