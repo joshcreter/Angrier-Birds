@@ -1,13 +1,11 @@
 source :rubygems
 
-gem "rails", "3.0.5"
+gem "rails", "3.0.7"
 
 gem "less", :git => "git://github.com/maccman/less.git"
 gem "rack-less"
 gem "yui-compressor"
-gem "supermodel"
 gem "juggernaut", :git => "git://github.com/joshcreter/juggernaut.git"
-#gem "juggernaut"
 gem "thin"
 gem "omniauth"
 gem "carrierwave"
@@ -31,8 +29,9 @@ gem "openid_dalli_store"
 gem "eventmachine"
 gem "redis"
 gem "delayed_job"
-#gem "statemachine"
- 
+#gem "em-synchrony"
+#gem "em-redis"
+
 gem "rake", "0.8.7"
 gem "sprockets"
 gem "jsmin"

@@ -12,13 +12,9 @@ class JuggernautObserver < ActiveRecord::Observer
     publish(:destroy, rec)
   end
 
-  protected
-
+protected
   def publish(type, rec)
-    Juggernaut.publish("/observer",
-    {:type => type, :id => rec.id,
-      :klass => rec.class.name, :record => rec}
-    )
+    Juggernaut.publish("/observer", {:type => type, :id => rec.id, :klass => rec.class.name, :record => rec})
   end
-end
 
+end

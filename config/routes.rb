@@ -38,10 +38,10 @@ Abirds::Application.routes.draw do |map|
 
   resources :brains do
     collection do
-      get 'start'
-      get 'onetime'
       get 'loopy'
       get 'message'
+      get 'start'
+      get 'stop'
     end
   end
   # used for the demo application only
