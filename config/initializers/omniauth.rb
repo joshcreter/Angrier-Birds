@@ -1,10 +1,9 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-#  provider :twitter, 'imkhJ6VxilZIA7AO36XpHg', 'FsFr1yuVI7RMp9O7v97j8dHkwSfFKeLMcgK74hyys', :sign_in => true
 
   require 'openid/store/filesystem'
 
   provider :facebook, '130768760334671', '64829ec2f2bd9e1724865f8882397cb6'
-  provider :twitter, 'CONSUMER_KEY', 'CONSUMER_SECRET'
+  provider :twitter, 'wnNRrLudpKiwJkGKLAieTg', 'ocUulP9IKlqqXty53ATvsqgzauxZFuhrzs6E5ohRk'
   provider :github, 'CLIENT ID', 'SECRET'
 
   # generic openid

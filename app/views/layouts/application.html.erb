@@ -1,48 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Abirds</title>
-  <%= stylesheet_link_tag :all, :cache => false %>
-  <%= csrf_meta_tag %>
-    <%= javascript_include_tag('/sprockets.js') %>
-</head>
-<body>
-<section id="head">
+	<head>
+		<title>Angrier Birds</title>
+		<%= stylesheet_link_tag "application" %>
+		<%= stylesheet_link_tag :all, :cache => false %>
+		<%= csrf_meta_tag %>
+		<%= javascript_include_tag('/sprockets.js') %>
+		<body>
+			<%= render "shared/header" %>
+			<div id="wrapper">
 
-	<section id="user">
-		<% if user_signed_in? %>
-			<nav id="nav_user">
-				<ul>
-					<span><%= current_user.email %></span>
-					<li><%= link_to "Settings", services_path %>
-					<li><%= link_to "Sign out", signout_services_path %></li>
-				</ul>
-			</nav>
-		<% else %>
-			<nav id="nav_user">
-				<ul>
-					<span>Sign in with:</span>
-					<li><%= link_to "Facebook", "/auth/facebook" %></li>
-					<li><%= link_to "Google", "/auth/google" %></li>
-					<li><%= link_to "Yahoo", "/auth/yahoo" %>
-					<li><%= link_to "Other", signin_services_path %>
-				</ul>
-			</nav>
-		<% end %>
-	</section>
+				<section id="body">
+					<section id="flash">
+						<% flash.each do |key, value| %>
+						<div class="flash <%= key %> round">
+							<%= value %>
+						</div>
+						<% end %>
+					</section>
+					<%= yield %>
 
-	<h1>A<sup>birds</sup></h1>
-</section>
+				</section>
 
-<section id="body">
-	<section id="flash">
-		<% flash.each do |key, value| %>
-			<div class="flash <%= key %> round"><%= value %></div>
-		<% end %>
-	</section>
+				<div id="content">
 
-	<%= yield %>
-</section>
+				</div>
 
-</body>
+			</div>
+		</body>
 </html>

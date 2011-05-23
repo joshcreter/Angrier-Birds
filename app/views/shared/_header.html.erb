@@ -1,0 +1,20 @@
+<header id="title">
+	<h1><%= link_to "Angrier Birds", root_url =%></h1>
+	<% if user_signed_in? %>
+
+	<ul>
+		<li>
+			<%= link_to "Start bot", loopy_brains_path =%>
+		</li>
+		<li>
+			<%= link_to "Stop bot", stop_brains_path =%>
+		</li>
+		<li>
+			<%= link_to "Sign out", signout_services_path =%>
+		</li>
+		<li><%= current_user.email %></li>
+	</ul>
+	<% else %>
+	<% end %>
+	</section>
+</header>

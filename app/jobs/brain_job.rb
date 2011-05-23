@@ -38,28 +38,14 @@ class BrainJob < Struct.new(:channel_id, :brain_id)
     start_working!
 
     while keep_alive?
+      message_body = "#{Time.now.to_i} - Loop: #{count} - [insert wit here]"
 
-      while keep_alive? && keep_working?
-        message_body = "#{count} #{REDIS.get("keepalive")} #{Time.now.to_i}"
+      message = Message.new(:body => message_body, :name => brain_id, :channel_id => "F900A25F-5C39-42FF-8CBD-AA7E80F8F94E")
+      message.save!
 
-        message = Message.new(:body => message_body, :name => brain_id, :channel_id => "F900A25F-5C39-42FF-8CBD-AA7E80F8F94E")
-        message.save!
+      sleep(5)
 
-        sleep(3)
-
-        loopcount += 1
-      end
+      loopcount += 1
     end
   end
-=begin
-EM.synchrony do
-
-redis = EventMachine::Redis.new(:host => 'juggernaut.angrier-birds.com')
-keep_alive = true
-
-#        EM::Synchrony.sleep(5)
-
-EventMachine.stop
-end
-=end
 end
