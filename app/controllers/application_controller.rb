@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 
   private
   def current_user_handle
-#    Rails.logger.debug "current_user_handle #{current_user.id}"
     return current_user.id
   end
 

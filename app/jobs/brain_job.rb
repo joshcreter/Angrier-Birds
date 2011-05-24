@@ -1,4 +1,4 @@
-class BrainJob < Struct.new(:channel_id, :brain_id)
+class BrainJob < Struct.new(:brain_id, :channel_id)
   def keep_alive?
     if REDIS.get("keep_alive") == "true"
     return 1
@@ -33,15 +33,14 @@ class BrainJob < Struct.new(:channel_id, :brain_id)
 
   def perform
     loopcount = 3
-
     make_alive!
     start_working!
 
     #    while keep_alive?
     while loopcount > 0
-      message_body = "#{Time.now} - [wit goes in here] - Countdown: #{loopcount}"
+      message_body = "#{Time.now} - [witty saying goes in here] - Countdown: #{loopcount}"
 
-      message = Message.new(:body => message_body, :name => brain_id, :channel_id => "2819176B-EEBE-4C70-9BFE-1CCA04A31267")
+      message = Message.new(:body => message_body, :name => brain_id, :channel_id => channel_id)
       message.save!
 
       sleep(5)
