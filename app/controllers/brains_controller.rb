@@ -12,13 +12,13 @@ class BrainsController < ApplicationController
   end
 
   def loopy
-    brain = BrainJob.new("loopy", @@channel_id)
+    brain = BrainJob.new("birdbrain (delayed)", @@channel_id)
     Delayed::Job.enqueue brain
     redirect_to :back
   end
 
-  def onetime
-    brain = BrainJob.new("birdbrain", @@channel_id)
+  def immediate
+    brain = BrainJob.new("birdbrain (immediate)", @@channel_id)
     brain.perform
     redirect_to :back
   end

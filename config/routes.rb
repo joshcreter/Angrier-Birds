@@ -39,7 +39,7 @@ Abirds::Application.routes.draw do |map|
   resources :brains do
     collection do
       get 'loopy'
-      get 'onetime'
+      get 'immediate'
       get 'start'
       get 'stop'
     end
